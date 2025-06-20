@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Trip Details</title></head>
+<body>
+<h2>Trip Details</h2>
+
+<img th:src="@{${trip.imagePath}}" width="400" alt="Trip image"/>
+
+<p><strong>Countries:</strong> <span th:text="${#strings.listJoin(trip.countries, ', ')}"/></p>
+<p><strong>Cities:</strong> <span th:text="${#strings.listJoin(trip.cities, ', ')}"/></p>
+<p><strong>Type:</strong> <span th:text="${trip.type}"/></p>
+<p><strong>Dates:</strong> <span th:text="${trip.startDate}"/> - <span th:text="${trip.endDate}"/></p>
+<p><strong>Budget:</strong> <span th:text="${trip.budget} + ' $'"/></p>
+<p><strong>Transport included:</strong> <span th:text="${trip.includeTransport ? 'Yes' : 'No'}"/></p>
+<p><strong>With Children:</strong> <span th:text="${trip.hasChildren ? 'Yes' : 'No'}"/></p>
+<p><strong>Description:</strong> <span th:text="${trip.additionalInfo}"/></p>
+
+<hr/>
+
+<div th:if="${trip.advice != null}">
+    <h3>Advice:</h3>
+    <p th:text="${trip.advice}"/>
+</div>
+<div th:if="${trip.advice == null}">
+    <form th:action="@{'/trips/' + ${trip.id} + '/advice'}" method="post">
+        <button type="submit">Generate Advice</button>
+    </form>
+</div>
+
+<br/>
+<a href="/trips/my">Back to my trips</a>
+</body>
+</html>

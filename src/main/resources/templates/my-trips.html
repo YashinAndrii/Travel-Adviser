@@ -1,0 +1,20 @@
+<h2>My Trips</h2>
+
+<div th:each="trip : ${trips}">
+    <div style="border: 1px solid #ccc; margin-bottom: 10px; padding: 10px;">
+        <a th:href="@{'/trips/' + ${trip.id}}">
+            <img th:src="@{${trip.imagePath}}" width="300" alt="Trip image"/>
+        </a>
+        <p><strong>Countries:</strong> <span th:text="${#strings.listJoin(trip.countries, ', ')}"/></p>
+        <p><strong>Cities:</strong> <span th:text="${#strings.listJoin(trip.cities, ', ')}"/></p>
+        <p><strong>Type:</strong> <span th:text="${trip.type}"/></p>
+        <p><strong>Dates:</strong>
+            <span th:text="${trip.startDate}"/> - <span th:text="${trip.endDate}"/>
+        </p>
+        <p><strong>With Children:</strong> <span th:text="${trip.hasChildren ? 'Yes' : 'No'}"/></p>
+        <p><strong>Status:</strong> <span th:text="${trip.completed ? 'Completed' : 'Planned'}"/></p>
+        <a th:href="@{'/trips/' + ${trip.id}}">View Details</a>
+    </div>
+</div>
+
+<a href="/trips/new">Plan a new trip</a>
