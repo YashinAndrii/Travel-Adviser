@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-public record CreateTripCommand(
+public record CreateTripRequest(
         List<String> countries,
         List<String> cities,
         TripType type,
@@ -14,5 +14,6 @@ public record CreateTripCommand(
         BigDecimal budget,
         boolean includeTransport,
         boolean hasChildren,
-        String additionalInfo) {}
+        String additionalInfo
+) {}
 

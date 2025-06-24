@@ -1,6 +1,6 @@
 package com.yashyn.travel_adviser.data.mapper;
 
-import com.yashyn.travel_adviser.data.dto.CreateTripCommand;
+import com.yashyn.travel_adviser.data.dto.CreateTripRequest;
 import com.yashyn.travel_adviser.data.dto.TripDto;
 import com.yashyn.travel_adviser.data.entities.Trip;
 import com.yashyn.travel_adviser.data.entities.User;
@@ -20,7 +20,16 @@ public interface TripMapper {
             @Mapping(target = "imagePath", ignore = true),
             @Mapping(target = "completed", constant = "false"),
             @Mapping(target = "advice", ignore = true),
-            @Mapping(target = "user", source = "user")
+            @Mapping(target = "user", expression = "java(user)"),
+            @Mapping(target = "countries", source = "cmd.countries"),
+            @Mapping(target = "cities", source = "cmd.cities"),
+            @Mapping(target = "type", source = "cmd.type"),
+            @Mapping(target = "startDate", source = "cmd.startDate"),
+            @Mapping(target = "endDate", source = "cmd.endDate"),
+            @Mapping(target = "budget", source = "cmd.budget"),
+            @Mapping(target = "includeTransport", source = "cmd.includeTransport"),
+            @Mapping(target = "hasChildren", source = "cmd.hasChildren"),
+            @Mapping(target = "additionalInfo", source = "cmd.additionalInfo")
     })
-    Trip toEntity(CreateTripCommand cmd, @Context User user);
+    Trip toEntity(CreateTripRequest cmd, @Context User user);
 }
