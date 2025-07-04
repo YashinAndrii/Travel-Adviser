@@ -1,10 +1,14 @@
+server:
+  port: 8081
 spring:
   application:
     name: travel-adviser
 
-  web:
-    resources:
-      static-locations: classpath:/static/
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:18080/realms/travel-gram
 
   datasource:
     url: jdbc:h2:mem:users
@@ -30,8 +34,3 @@ spring:
     openai:
       api-key: ${OPEN_AI_KEY}
       model: gpt-3.5-turbo
-
-app:
-  images:
-    root: classpath:/static/trip-images
-    default: /trip-images/default.jpg
