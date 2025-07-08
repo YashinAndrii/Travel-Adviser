@@ -1,8 +1,12 @@
 package com.yashyn.travel_adviser.data.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.yashyn.travel_adviser.data.entities.Comment;
+import com.yashyn.travel_adviser.data.entities.Like;
 import lombok.Data;
+
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -13,15 +17,18 @@ public class PostDto {
     private String username;
     private String avatarUrl;
 
-    private List<String> photos;
-    private List<String> countries;
-    private List<String> cities;
+    private Set<String> photos;
+    private Set<String> countries;
+    private Set<String> cities;
     private String dates;
     private String type;
     private String budget;
+
+    @JsonProperty("isPlanned")
     private boolean planned;
     private LocalDateTime createdAt;
 
-    private int likeCount;
-    private int commentCount;
+    @JsonProperty("likes")
+    private Set<LikeDto> likes;
+    private Set<CommentDto> comments;
 }

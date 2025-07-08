@@ -6,22 +6,17 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {LikeMapper.class, CommentMapper.class})
 public interface PostMapper {
 
     @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "user.username", target = "username")
     @Mapping(source = "user.avatarUrl", target = "avatarUrl")
     @Mapping(source = "planned", target = "planned")
-    @Mapping(target = "likeCount", expression = "java(post.getLikes() != null ? post.getLikes().size() : 0)")
-    @Mapping(target = "commentCount", expression = "java(post.getComments() != null ? post.getComments().size() : 0)")
     PostDto toDto(Post post);
 
     @InheritInverseConfiguration(name = "toDto")
     @Mapping(target = "user", ignore = true)
-    @Mapping(target = "likes", ignore = true)
-    @Mapping(target = "comments", ignore = true)
     @Mapping(target = "id", ignore = true)
     Post toEntity(PostDto dto);
 }
-

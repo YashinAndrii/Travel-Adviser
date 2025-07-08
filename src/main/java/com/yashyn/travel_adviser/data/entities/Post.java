@@ -1,13 +1,11 @@
 package com.yashyn.travel_adviser.data.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -16,6 +14,15 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
+@NamedEntityGraph(
+        name = "Post.countriesCitiesPhotos",
+        attributeNodes = {
+                @NamedAttributeNode("countries"),
+                @NamedAttributeNode("cities"),
+                @NamedAttributeNode("photos")
+        }
+)
 public class Post {
 
     @Id
@@ -27,19 +34,19 @@ public class Post {
     private User user;
 
     @ElementCollection
-    @CollectionTable(name = "post_photos", joinColumns = @JoinColumn(name = "post_id"))
+    @CollectionTable(name = "posts_photos", joinColumns = @JoinColumn(name = "post_id"))
     @Column(name = "photo_url")
-    private List<String> photos;
+    private Set<String> photos;
 
     @ElementCollection
-    @CollectionTable(name = "post_countries", joinColumns = @JoinColumn(name = "post_id"))
+    @CollectionTable(name = "posts_countries", joinColumns = @JoinColumn(name = "post_id"))
     @Column(name = "country")
-    private List<String> countries;
+    private Set<String> countries;
 
     @ElementCollection
-    @CollectionTable(name = "post_cities", joinColumns = @JoinColumn(name = "post_id"))
+    @CollectionTable(name = "posts_cities", joinColumns = @JoinColumn(name = "post_id"))
     @Column(name = "city")
-    private List<String> cities;
+    private Set<String> cities;
 
     private String dates;
 
@@ -53,8 +60,8 @@ public class Post {
     private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-    private List<Like> likes;
+    private Set<Like> likes;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-    private List<Comment> comments;
+    private Set<Comment> comments;
 }

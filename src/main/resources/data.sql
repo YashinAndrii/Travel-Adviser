@@ -69,13 +69,14 @@ CREATE TABLE comments
     CONSTRAINT fk_comments_post FOREIGN KEY (post_id) REFERENCES posts (id)
 );
 
-
 -- USERS
 INSERT INTO users (id, username, display_name, avatar_url, bio, created_at)
-VALUES ('11111111-1111-1111-1111-111111111111', 'travel_anna', 'Anna Traveler', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+VALUES ('11111111-1111-1111-1111-111111111111', 'travel_anna', 'Anna Traveler',
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
         'Exploring the world one trip at a time.', CURRENT_TIMESTAMP),
        ('22222222-2222-2222-2222-222222222222', 'globetrotter_bob', 'Bob Globetrotter',
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face', 'Adventure is out there!', CURRENT_TIMESTAMP);
+        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+        'Adventure is out there!', CURRENT_TIMESTAMP);
 
 -- POSTS
 INSERT INTO posts (id, user_id, dates, type, budget, is_planned, created_at)
@@ -84,7 +85,8 @@ VALUES ('aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1', '11111111-1111-1111-1111-1111111
 
 -- POST_PHOTOS
 INSERT INTO posts_photos (post_id, photo_url)
-VALUES ('aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1', 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=1000&fit=crop');
+VALUES ('aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1',
+        'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=1000&fit=crop');
 
 -- POST_COUNTRIES
 INSERT INTO posts_countries (post_id, country)
@@ -102,7 +104,8 @@ VALUES ('aaaaaaa2-aaaa-aaaa-aaaa-aaaaaaaaaaa2', '22222222-2222-2222-2222-2222222
         'ADVENTURE', '$1800', FALSE, CURRENT_TIMESTAMP);
 
 INSERT INTO posts_photos (post_id, photo_url)
-VALUES ('aaaaaaa2-aaaa-aaaa-aaaa-aaaaaaaaaaa2', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=1000&fit=crop');
+VALUES ('aaaaaaa2-aaaa-aaaa-aaaa-aaaaaaaaaaa2',
+        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=1000&fit=crop');
 
 INSERT INTO posts_countries (post_id, country)
 VALUES ('aaaaaaa2-aaaa-aaaa-aaaa-aaaaaaaaaaa2', 'Switzerland');
@@ -112,7 +115,8 @@ VALUES ('aaaaaaa2-aaaa-aaaa-aaaa-aaaaaaaaaaa2', 'Zermatt');
 
 -- Лайки ко второму посту
 INSERT INTO likes (id, user_id, post_id, created_at)
-VALUES ('bbbbbbb1-bbbb-bbbb-bbbb-bbbbbbbbbbb1', '11111111-1111-1111-1111-111111111111', 'aaaaaaa2-aaaa-aaaa-aaaa-aaaaaaaaaaa2', CURRENT_TIMESTAMP);
+VALUES ('bbbbbbb1-bbbb-bbbb-bbbb-bbbbbbbbbbb1', '11111111-1111-1111-1111-111111111111',
+        'aaaaaaa2-aaaa-aaaa-aaaa-aaaaaaaaaaa2', CURRENT_TIMESTAMP);
 
 -- Третий пост: запланированная культурная поездка
 INSERT INTO posts (id, user_id, dates, type, budget, is_planned, created_at)
@@ -120,7 +124,8 @@ VALUES ('aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3', '11111111-1111-1111-1111-1111111
         'CULTURAL', '$2200', TRUE, CURRENT_TIMESTAMP);
 
 INSERT INTO posts_photos (post_id, photo_url)
-VALUES ('aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3', 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&h=1000&fit=crop');
+VALUES ('aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3',
+        'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&h=1000&fit=crop');
 
 INSERT INTO posts_countries (post_id, country)
 VALUES ('aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3', 'Japan');
@@ -130,7 +135,8 @@ VALUES ('aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3', 'Kyoto');
 
 -- Лайки к третьему посту
 INSERT INTO likes (id, user_id, post_id, created_at)
-VALUES
-    ('bbbbbbb2-bbbb-bbbb-bbbb-bbbbbbbbbbb2', '22222222-2222-2222-2222-222222222222', 'aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3', CURRENT_TIMESTAMP),
-    ('bbbbbbb3-bbbb-bbbb-bbbb-bbbbbbbbbbb3', '11111111-1111-1111-1111-111111111111', 'aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3', CURRENT_TIMESTAMP);
+VALUES ('bbbbbbb2-bbbb-bbbb-bbbb-bbbbbbbbbbb2', '22222222-2222-2222-2222-222222222222',
+        'aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3', CURRENT_TIMESTAMP),
+       ('bbbbbbb3-bbbb-bbbb-bbbb-bbbbbbbbbbb3', '11111111-1111-1111-1111-111111111111',
+        'aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3', CURRENT_TIMESTAMP);
 
