@@ -5,8 +5,9 @@ import com.yashyn.travel_adviser.data.entities.Post;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
 
-@Mapper(componentModel = "spring", uses = {LikeMapper.class, CommentMapper.class})
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = {LikeMapper.class, CommentMapper.class})
 public interface PostMapper {
 
     @Mapping(source = "user.id", target = "userId")

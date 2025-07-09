@@ -63,4 +63,7 @@ public class Post {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private Set<Comment> comments;
+
+    private String plannedNote;
+    private String description;
 }

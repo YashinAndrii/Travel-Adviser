@@ -1,5 +1,6 @@
 package com.yashyn.travel_adviser.controllers;
 
+import com.yashyn.travel_adviser.data.dto.CreatePostDto;
 import com.yashyn.travel_adviser.data.dto.PostDto;
 import com.yashyn.travel_adviser.services.PostService;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,7 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<PostDto> createPost(@RequestBody PostDto postDto) {
+    public ResponseEntity<PostDto> createPost(@RequestBody CreatePostDto postDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(postService.createPost(postDto));
     }
 

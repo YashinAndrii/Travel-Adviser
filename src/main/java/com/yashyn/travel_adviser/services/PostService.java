@@ -1,7 +1,9 @@
 package com.yashyn.travel_adviser.services;
 
+import com.yashyn.travel_adviser.data.dto.CreatePostDto;
 import com.yashyn.travel_adviser.data.dto.PostDto;
 import com.yashyn.travel_adviser.data.entities.TripType;
+import com.yashyn.travel_adviser.data.mapper.CreatePostMapper;
 import com.yashyn.travel_adviser.data.mapper.PostMapper;
 import com.yashyn.travel_adviser.data.repositories.PostRepository;
 import com.yashyn.travel_adviser.data.repositories.UserRepository;
@@ -22,6 +24,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
     private final PostMapper postMapper;
+    private final CreatePostMapper createPostMapper;
 
     public List<PostDto> getAllPosts() {
         return postRepository.findAll()
@@ -51,11 +54,8 @@ public class PostService {
     }
 
     @Transactional
-    public PostDto createPost(PostDto dto) {
-        var user = userRepository.findById(dto.getUserId()).orElseThrow(() -> new UserNotFoundException("User not found"));
-        var post = postMapper.toEntity(dto);
-        post.setUser(user);
-        post.setCreatedAt(dto.getCreatedAt() != null ? dto.getCreatedAt() : java.time.LocalDateTime.now());
+    public PostDto createPost(CreatePostDto dto) {
+        var post = createPostMapper.toEntity(dto);
         return postMapper.toDto(postRepository.save(post));
     }
 

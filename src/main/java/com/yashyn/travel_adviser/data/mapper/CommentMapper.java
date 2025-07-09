@@ -4,8 +4,9 @@ import com.yashyn.travel_adviser.data.dto.CommentDto;
 import com.yashyn.travel_adviser.data.entities.Comment;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CommentMapper {
 
     @Mapping(source = "user.id", target = "userId")

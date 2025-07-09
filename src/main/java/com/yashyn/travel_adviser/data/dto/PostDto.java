@@ -29,4 +29,7 @@ public class PostDto {
     @JsonProperty("likes")
     private Set<LikeDto> likes;
     private Set<CommentDto> comments;
+
+    private String plannedNote;
+    private String description;
 }
