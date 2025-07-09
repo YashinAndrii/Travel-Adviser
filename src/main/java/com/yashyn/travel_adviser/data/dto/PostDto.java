@@ -1,8 +1,6 @@
 package com.yashyn.travel_adviser.data.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.yashyn.travel_adviser.data.entities.Comment;
-import com.yashyn.travel_adviser.data.entities.Like;
 import lombok.Data;
 
 import java.time.LocalDateTime;
