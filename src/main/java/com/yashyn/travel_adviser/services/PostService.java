@@ -54,7 +54,7 @@ public class PostService {
     }
 
     @Transactional
-    public PostDto createPost(CreatePostDto dto) {
+    public PostDto createPost(CreatePostDto dto) { //TODO take userId from auth
         var post = createPostMapper.toEntity(dto);
         return postMapper.toDto(postRepository.save(post));
     }

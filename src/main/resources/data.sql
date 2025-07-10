@@ -85,8 +85,8 @@ VALUES ('aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1', '11111111-1111-1111-1111-1111111
 
 -- POST_PHOTOS
 INSERT INTO posts_photos (post_id, photo_url)
-VALUES ('aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1',
-        'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=1000&fit=crop');
+VALUES ('aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1','0c2af947-5261-4733-938e-b07a24e6c71f');
+        --'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=1000&fit=crop');
 
 -- POST_COUNTRIES
 INSERT INTO posts_countries (post_id, country)

@@ -35,6 +35,7 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity<PostDto> createPost(@RequestBody CreatePostDto postDto) {
+        System.out.println(postDto.getPhotos());
         return ResponseEntity.status(HttpStatus.CREATED).body(postService.createPost(postDto));
     }
 
