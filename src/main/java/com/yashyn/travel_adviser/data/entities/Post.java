@@ -3,6 +3,8 @@ package com.yashyn.travel_adviser.data.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
@@ -47,12 +49,13 @@ public class Post {
     @Column(name = "city")
     private Set<String> cities;
 
-    private String dates;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     @Enumerated(EnumType.STRING)
     private TripType type;
 
-    private String budget;
+    private BigDecimal budget;
 
     private boolean isPlanned;
 

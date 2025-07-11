@@ -3,9 +3,12 @@ package com.yashyn.travel_adviser.controllers;
 import com.yashyn.travel_adviser.data.dto.CreatePostDto;
 import com.yashyn.travel_adviser.data.dto.PostDto;
 import com.yashyn.travel_adviser.services.PostService;
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +17,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/posts")
 @RequiredArgsConstructor
+@Validated
 public class PostController {
 
     private final PostService postService;
@@ -34,8 +38,7 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<PostDto> createPost(@RequestBody CreatePostDto postDto) {
-        System.out.println(postDto.getPhotos());
+    public ResponseEntity<PostDto> createPost(@RequestBody @Valid CreatePostDto postDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(postService.createPost(postDto));
     }
 

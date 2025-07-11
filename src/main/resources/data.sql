@@ -14,7 +14,8 @@ CREATE TABLE posts
 (
     id         UUID PRIMARY KEY,
     user_id    UUID NOT NULL,
-    dates      VARCHAR(255),
+    start_date DATE,
+    end_date   DATE,
     type       VARCHAR(50),
     budget     VARCHAR(50),
     is_planned BOOLEAN,
@@ -79,14 +80,14 @@ VALUES ('11111111-1111-1111-1111-111111111111', 'travel_anna', 'Anna Traveler',
         'Adventure is out there!', CURRENT_TIMESTAMP);
 
 -- POSTS
-INSERT INTO posts (id, user_id, dates, type, budget, is_planned, created_at)
-VALUES ('aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1', '11111111-1111-1111-1111-111111111111', 'June 1 - June 10, 2025',
-        'ROMANTIC', '$2500', FALSE, CURRENT_TIMESTAMP);
+INSERT INTO posts (id, user_id, start_date, end_date, type, budget, is_planned, created_at)
+VALUES ('aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1', '11111111-1111-1111-1111-111111111111', '2025-06-01', '2025-06-10',
+    'ROMANTIC', '2500', FALSE, CURRENT_TIMESTAMP);
 
 -- POST_PHOTOS
 INSERT INTO posts_photos (post_id, photo_url)
-VALUES ('aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1','0c2af947-5261-4733-938e-b07a24e6c71f');
-        --'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=1000&fit=crop');
+VALUES ('aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1', '70bfbfd5-dfbd-4471-ba8e-bbb10ef422e8');
+--'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=1000&fit=crop');
 
 -- POST_COUNTRIES
 INSERT INTO posts_countries (post_id, country)
@@ -99,13 +100,19 @@ VALUES ('aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1', 'Rome'),
        ('aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1', 'Paris');
 
 -- Второй пост: активное приключение
-INSERT INTO posts (id, user_id, dates, type, budget, is_planned, created_at)
-VALUES ('aaaaaaa2-aaaa-aaaa-aaaa-aaaaaaaaaaa2', '22222222-2222-2222-2222-222222222222', 'July 15 - July 25, 2025',
-        'ADVENTURE', '$1800', FALSE, CURRENT_TIMESTAMP);
+INSERT INTO posts (id, user_id, start_date, end_date, type, budget, is_planned, created_at)
+VALUES ('aaaaaaa2-aaaa-aaaa-aaaa-aaaaaaaaaaa2', '22222222-2222-2222-2222-222222222222', '2025-07-15', '2025-07-25',
+        'ADVENTURE', '1800', FALSE, CURRENT_TIMESTAMP);
 
 INSERT INTO posts_photos (post_id, photo_url)
 VALUES ('aaaaaaa2-aaaa-aaaa-aaaa-aaaaaaaaaaa2',
-        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=1000&fit=crop');
+        '70bfbfd5-dfbd-4471-ba8e-bbb10ef422e8');
+INSERT INTO posts_photos (post_id, photo_url)
+VALUES ('aaaaaaa2-aaaa-aaaa-aaaa-aaaaaaaaaaa2',
+        'a2310bb0-0950-4072-a0d1-69c749d12a60');
+INSERT INTO posts_photos (post_id, photo_url)
+VALUES ('aaaaaaa2-aaaa-aaaa-aaaa-aaaaaaaaaaa2',
+        'af873810-40ac-493b-bec9-d83794f6c630');
 
 INSERT INTO posts_countries (post_id, country)
 VALUES ('aaaaaaa2-aaaa-aaaa-aaaa-aaaaaaaaaaa2', 'Switzerland');
@@ -119,13 +126,16 @@ VALUES ('bbbbbbb1-bbbb-bbbb-bbbb-bbbbbbbbbbb1', '11111111-1111-1111-1111-1111111
         'aaaaaaa2-aaaa-aaaa-aaaa-aaaaaaaaaaa2', CURRENT_TIMESTAMP);
 
 -- Третий пост: запланированная культурная поездка
-INSERT INTO posts (id, user_id, dates, type, budget, is_planned, created_at)
-VALUES ('aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3', '11111111-1111-1111-1111-111111111111', 'August 10 - August 20, 2025',
-        'CULTURAL', '$2200', TRUE, CURRENT_TIMESTAMP);
+INSERT INTO posts (id, user_id, start_date, end_date, type, budget, is_planned, created_at)
+VALUES ('aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3', '11111111-1111-1111-1111-111111111111', '2025-08-10', '2025-08-20',
+    'CULTURAL', '2200', TRUE, CURRENT_TIMESTAMP);
 
 INSERT INTO posts_photos (post_id, photo_url)
 VALUES ('aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3',
-        'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&h=1000&fit=crop');
+        '72460598-8611-47bb-bb17-1d881405f50d');
+INSERT INTO posts_photos (post_id, photo_url)
+VALUES ('aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3',
+        'e6a7154d-4501-408a-806e-b6754787a9a5');
 
 INSERT INTO posts_countries (post_id, country)
 VALUES ('aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3', 'Japan');
@@ -139,4 +149,3 @@ VALUES ('bbbbbbb2-bbbb-bbbb-bbbb-bbbbbbbbbbb2', '22222222-2222-2222-2222-2222222
         'aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3', CURRENT_TIMESTAMP),
        ('bbbbbbb3-bbbb-bbbb-bbbb-bbbbbbbbbbb3', '11111111-1111-1111-1111-111111111111',
         'aaaaaaa3-aaaa-aaaa-aaaa-aaaaaaaaaaa3', CURRENT_TIMESTAMP);
-

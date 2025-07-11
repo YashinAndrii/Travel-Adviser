@@ -3,6 +3,8 @@ package com.yashyn.travel_adviser.data.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
@@ -18,9 +20,10 @@ public class PostDto {
     private Set<String> photos;
     private Set<String> countries;
     private Set<String> cities;
-    private String dates;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String type;
-    private String budget;
+    private BigDecimal budget;
 
     @JsonProperty("isPlanned")
     private boolean planned;

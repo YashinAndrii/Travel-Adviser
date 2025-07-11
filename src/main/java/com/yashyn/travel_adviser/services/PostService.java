@@ -65,7 +65,8 @@ public class PostService {
         existing.setPhotos(dto.getPhotos());
         existing.setCountries(dto.getCountries());
         existing.setCities(dto.getCities());
-        existing.setDates(dto.getDates());
+        existing.setStartDate(dto.getStartDate());
+        existing.setEndDate(dto.getEndDate());
         existing.setType(TripType.valueOf(dto.getType()));
         existing.setBudget(dto.getBudget());
         existing.setPlanned(dto.isPlanned());
