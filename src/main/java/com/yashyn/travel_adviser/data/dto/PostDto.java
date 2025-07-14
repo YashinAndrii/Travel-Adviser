@@ -35,4 +35,5 @@ public class PostDto {
 
     private String plannedNote;
     private String description;
+    private String travelAdvice;
 }

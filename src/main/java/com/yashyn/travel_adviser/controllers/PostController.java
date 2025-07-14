@@ -52,4 +52,9 @@ public class PostController {
         postService.deletePost(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/advice")
+    public ResponseEntity<String> generateAdvice(@RequestBody @Valid CreatePostDto postDto) {
+        return ResponseEntity.ok(postService.generateTravelAdvice(postDto));
+    }
 }

@@ -69,4 +69,5 @@ public class Post {
 
     private String plannedNote;
     private String description;
+    private String travelAdvice;
 }

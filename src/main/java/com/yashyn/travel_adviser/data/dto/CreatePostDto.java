@@ -32,10 +32,11 @@ public class CreatePostDto {
     @OnlyLetters
     private Set<String> cities;
 
-    @NotBlank
     private String description;
 
     private String plannedNote;
+
+    private String travelAdvice;
 
     @JsonProperty("isPlanned")
     private boolean planned;

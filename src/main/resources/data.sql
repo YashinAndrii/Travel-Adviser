@@ -19,6 +19,9 @@ CREATE TABLE posts
     type       VARCHAR(50),
     budget     VARCHAR(50),
     is_planned BOOLEAN,
+    description VARCHAR(255),
+    planned_note VARCHAR(255),
+    travel_advice VARCHAR,
     created_at TIMESTAMP,
     CONSTRAINT fk_posts_user FOREIGN KEY (user_id) REFERENCES users (id)
 );
@@ -80,9 +83,9 @@ VALUES ('11111111-1111-1111-1111-111111111111', 'travel_anna', 'Anna Traveler',
         'Adventure is out there!', CURRENT_TIMESTAMP);
 
 -- POSTS
-INSERT INTO posts (id, user_id, start_date, end_date, type, budget, is_planned, created_at)
+INSERT INTO posts (id, user_id, start_date, end_date, type, budget, is_planned, travel_advice, created_at)
 VALUES ('aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1', '11111111-1111-1111-1111-111111111111', '2025-06-01', '2025-06-10',
-    'ROMANTIC', '2500', FALSE, CURRENT_TIMESTAMP);
+    'ROMANTIC', '2500', FALSE,'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', CURRENT_TIMESTAMP);
 
 -- POST_PHOTOS
 INSERT INTO posts_photos (post_id, photo_url)
