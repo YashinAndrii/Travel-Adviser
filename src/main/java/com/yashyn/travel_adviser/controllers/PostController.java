@@ -1,5 +1,6 @@
 package com.yashyn.travel_adviser.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.yashyn.travel_adviser.data.dto.CreatePostDto;
 import com.yashyn.travel_adviser.data.dto.PostDto;
 import com.yashyn.travel_adviser.services.PostService;
@@ -54,7 +55,7 @@ public class PostController {
     }
 
     @PostMapping("/advice")
-    public ResponseEntity<String> generateAdvice(@RequestBody @Valid CreatePostDto postDto) {
-        return ResponseEntity.ok(postService.generateTravelAdvice(postDto));
+    public ResponseEntity<String> generateAdvice(@RequestBody @Valid CreatePostDto postDto, @RequestParam boolean isTransportIncluded, @RequestParam List<String> placesWhereAlreadyWas,  @RequestParam int amountOfPeople) throws JsonProcessingException {
+        return ResponseEntity.ok(postService.generateTravelAdvice(postDto, placesWhereAlreadyWas, amountOfPeople, isTransportIncluded));
     }
 }

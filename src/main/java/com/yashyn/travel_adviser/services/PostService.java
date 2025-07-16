@@ -1,5 +1,7 @@
 package com.yashyn.travel_adviser.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yashyn.travel_adviser.data.dto.CreatePostDto;
 import com.yashyn.travel_adviser.data.dto.PostDto;
 import com.yashyn.travel_adviser.data.entities.TripType;
@@ -23,6 +25,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class PostService {
+
+    ObjectMapper mapper = new ObjectMapper();
 
     private final static int AMOUNT_OF_ADVICE_VARIANTS = 3;
     private final static int PREMIUM_AMOUNT_OF_ADVICE_VARIANTS = 5;
@@ -80,22 +84,23 @@ public class PostService {
         return postMapper.toDto(postRepository.save(existing));
     }
 
-    public String generateTravelAdvice(CreatePostDto postDto) {
+    public String generateTravelAdvice(CreatePostDto postDto, List<String> placesWhereAlreadyWas, int amountOfPeople, boolean isTransportIncluded) throws JsonProcessingException {
+        System.out.println("generateTravelAdvice");
         String prompt = String.format("""
                 You are a seasoned travel consultant and trip budgeting specialist.
                 
                 **Input data**
                 {
-                  "countries": {countries},                    // Set<String>
-                  "cities": {cities},                          // Set<String>
-                  "startDate": "{startDate}",                  // ISO-8601  (e.g., 2025-08-01)
-                  "endDate": "{endDate}",                      // ISO-8601
-                  "budget": {budget},                          // Decimal, total trip budget (currency as specified by user)
-                  "amountOfPeople": {amountOfPeople},          // int
-                  "isTransportIncludedInBudget": {isTransportIncludedInBudget}, // boolean
-                  "type": "{type}",                            // e.g. Adventure | Romantic | Family | Gastronomic …
-                  "plannedNote": "{plannedNote}",              // free-form wishes (“love mountains”, “want to focus on museums”, etc.)
-                  "placesWhereAlreadyWas": {placesWhereAlreadyWas} // Set<String> — places to exclude
+                  "countries": %s,                    // Set<String>
+                  "cities": %s,                          // Set<String>
+                  "startDate": "%s",                  // ISO-8601  (e.g., 2025-08-01)
+                  "endDate": "%s",                      // ISO-8601
+                  "budget": %.2f,                          // Decimal, total trip budget (currency as specified by user)
+                  "amountOfPeople": %d,          // int
+                  "isTransportIncludedInBudget": %b, // boolean
+                  "type": "%s",                            // e.g. Adventure | Romantic | Family | Gastronomic …
+                  "plannedNote": "%s",              // free-form wishes (“love mountains”, “want to focus on museums”, etc.)
+                  "placesWhereAlreadyWas": %s // Set<String> — places to exclude
                 }
                 
                 **Task**
@@ -178,7 +183,17 @@ public class PostService {
                 – Write in English, but keep names of attractions and restaurants in original language.  
                 – Round all amounts to one decimal place.  
                 – Do not include comments or extra explanation outside the specified JSON.
-                """);
+                """, mapper.writeValueAsString(postDto.getCountries()),
+                mapper.writeValueAsString(postDto.getCities()),
+                postDto.getStartDate(),
+                postDto.getEndDate(),
+                postDto.getBudget(),
+                amountOfPeople,
+                isTransportIncluded,
+                postDto.getType(),
+                postDto.getPlannedNote().replace("\"", "'"),
+                mapper.writeValueAsString(placesWhereAlreadyWas));
+        System.out.println(prompt);
 
 
         postDto.setTravelAdvice(prompt);
@@ -192,14 +207,14 @@ public class PostService {
                 .content();
     }
 
-    public List<String> generateSetOfTravelAdvices(CreatePostDto postDto) {
+/*    public List<String> generateSetOfTravelAdvices(CreatePostDto postDto) {
         List<String> setOfAdvices = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             setOfAdvices.add(generateTravelAdvice(postDto));
         }
 
         return setOfAdvices;
-    }
+    }*/
 
     @Transactional
     public void deletePost(UUID id) {
